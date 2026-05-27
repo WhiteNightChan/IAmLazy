@@ -121,7 +121,7 @@
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UISwipeActionsConfiguration *)tableView:(UITableView *)tableView leadingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath {
 	// export backup
 	NSString *backupName = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
 
@@ -145,7 +145,7 @@
 	return [UISwipeActionsConfiguration configurationWithActions:@[action]];
 }
 
-- (UISwipeActionsConfiguration *)tableView:(UITableView *)tableView leadingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath {
 	// delete backup
 	NSString *backupName = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
 	NSString *filePath = [backupDir stringByAppendingPathComponent:backupName];
@@ -157,7 +157,7 @@
 			NSError *deleteError = nil;
 			[fileManager removeItemAtPath:filePath error:&deleteError];
 			if(deleteError){
-				NSString *msg = [NSString stringWithFormat:[[localize(@"An error occured and %@ was not deleted!")
+				NSString *msg = [NSString stringWithFormat:[[localize(@"An error occurred and %@ was not deleted!")
 																stringByAppendingString:@"\n\n"]
 															   stringByAppendingString:localize(@"Info: %@")],
 															  backupName,
@@ -219,7 +219,7 @@
 	NSError *writeError = nil;
 	[[NSFileManager defaultManager] copyItemAtURL:url toURL:backupDirURL error:&writeError];
 	if(writeError){
-		NSString *msg = [NSString stringWithFormat:[[localize(@"An error occured and %@ could not be imported!")
+		NSString *msg = [NSString stringWithFormat:[[localize(@"An error occurred and %@ could not be imported!")
 														stringByAppendingString:@"\n\n"]
 														stringByAppendingString:localize(@"Info: %@")],
 														[url absoluteString],

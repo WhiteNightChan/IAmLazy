@@ -1,0 +1,32 @@
+name: Update Submodules
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Update Submodules
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Main
+        uses: actions/checkout@v6
+        with:
+          path: main
+          submodules: recursive
+
+      - name: Set up Git
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+
+      - name: Update Submodules
+        working-directory: main
+        run: |
+          git submodule update --init --recursive --remote App/Resources/Strings
+          git add .
+          git diff --cached --quiet && exit 0
+          git commit -m "Update Submodules"
+          git push

@@ -108,7 +108,7 @@
 		// translators
 		@"Uckermark" : @"German translation",
 		@"turkborough" : @"Turkish translation",
-		@"lisiyaki" : @"Japanese translation",
+		@"KAGUYA_1137, WhiteNightChan" : @"Japanese translation",
 		@"TheMastjdj" : @"Russian translation",
 		@"sevenpastzeero" : @"Arabic translation",
 		@"Alejandro Katz" : @"Spanish translation",
